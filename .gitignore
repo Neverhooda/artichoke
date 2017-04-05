@@ -27,3 +27,6 @@
 *.exe
 *.out
 *.app
+
+# NS-3
+*.xml
