@@ -122,13 +122,17 @@ void AodvExample::Run() {
   Simulator::Stop(Seconds(totalTime));
 
   AnimationInterface anim("scratch/artichoke/aodv.xml");
+  uint32_t urlImage = anim.AddResource("/home/fox/workspace/ns-allinone-3.26/ns-3.26/scratch/artichoke/page1_pic1.png"); 
 
   for (uint32_t i = 0; i < size; ++i) {
     Ptr<MobilityModel> mob = nodes.Get(i)->GetObject<MobilityModel>();
     Vector pos = mob->GetPosition();
     std::cout << "Node " << i << " is at (" << pos.x << ", " << pos.y << ", "
               << pos.z << ")\n";
+              // uint32_t nodeId = Ptr <Node> (*i)->GetId ();
     anim.SetConstantPosition(nodes.Get(i), pos.x, pos.y);
+    anim.UpdateNodeImage(nodes.Get(i)->GetId(), urlImage);
+    anim.UpdateNodeSize (nodes.Get(i)->GetId(), 40.0, 40.0);
   }
 
   Simulator::Run();
